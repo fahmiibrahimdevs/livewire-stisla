@@ -10,13 +10,13 @@
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
             <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                <span class="page-link dark:tw-bg-slate-600" aria-hidden="true">&lsaquo;</span>
+                <span class="page-link" aria-hidden="true">&lsaquo;</span>
             </li>
             @else
             <li class="page-item">
                 <button type="button"
                     dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}"
-                    class="page-link dark:tw-bg-slate-800" wire:click="previousPage('{{ $paginator->getPageName() }}')"
+                    class="page-link" wire:click="previousPage('{{ $paginator->getPageName() }}')"
                     wire:loading.attr="disabled" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</button>
             </li>
             @endif
@@ -32,7 +32,7 @@
             @if ($page >= $paginator->currentPage() - 2 && $page <= $paginator->currentPage() + 2)
                 <li class="page-item {{ $page == $paginator->currentPage() ? 'active' : '' }}"
                     wire:key="paginator-{{ $paginator->getPageName() }}-page-{{ $page }}">
-                    <button type="button" class="page-link dark:tw-bg-slate-800 dark:tw-border dark:tw-border-slate-800"
+                    <button type="button" class="page-link"
                         wire:click="gotoPage({{ $page }}, '{{ $paginator->getPageName() }}')">{{ $page }}</button>
                 </li>
                 @endif
@@ -45,12 +45,12 @@
                 <li class="page-item">
                     <button type="button"
                         dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}"
-                        class="page-link dark:tw-bg-slate-800" wire:click="nextPage('{{ $paginator->getPageName() }}')"
+                        class="page-link" wire:click="nextPage('{{ $paginator->getPageName() }}')"
                         wire:loading.attr="disabled" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</button>
                 </li>
                 @else
                 <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span class="page-link dark:tw-bg-slate-600" aria-hidden="true">&rsaquo;</span>
+                    <span class="page-link" aria-hidden="true">&rsaquo;</span>
                 </li>
                 @endif
         </ul>
