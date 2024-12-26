@@ -67,19 +67,20 @@
                             </a>
                         </li>
                         @if (Auth::user()->hasRole('admin'))
-                        <li class="nav-item dropdown {{ request()->is('example') || request()->is('control-user') ? 'active' : '' }}">
-                            <a href="#" data-toggle="dropdown" class="nav-link has-dropdown">
-                                <i class="fas fa-chalkboard"></i><span>Master Data</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item {{ request()->is('example') ? 'active' : '' }}">
-                                    <a href="/example" class="nav-link">Example</a>
-                                </li>
-                                <li class="nav-item {{ request()->is('control-user') ? 'active' : '' }}">
-                                    <a href="/control-user" class="nav-link">Control User</a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li
+                                class="nav-item dropdown {{ request()->is('example') || request()->is('control-user') ? 'active' : '' }}">
+                                <a href="#" data-toggle="dropdown" class="nav-link has-dropdown">
+                                    <i class="fas fa-chalkboard"></i><span>Master Data</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item {{ request()->is('example') ? 'active' : '' }}">
+                                        <a href="/example" class="nav-link">Example</a>
+                                    </li>
+                                    <li class="nav-item {{ request()->is('control-user') ? 'active' : '' }}">
+                                        <a href="/control-user" class="nav-link">Control User</a>
+                                    </li>
+                                </ul>
+                            </li>
                         @endif
                     </ul>
                 </div>
@@ -95,7 +96,7 @@
                         href="http://fahmiibrahimdev.tech/">Fahmi Ibrahim</a>
                 </div>
                 <div class="footer-right">
-                    1.0.1
+                    1.1.5
                 </div>
             </footer>
         </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Example\Example;
 use App\Livewire\Dashboard\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
@@ -14,7 +15,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 });
 
-Route::group(['middleware' => ['auth', 'role:admin']], function () {});
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/example', Example::class);
+});
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {});
 require __DIR__ . '/auth.php';
