@@ -5,6 +5,7 @@ use App\Livewire\Dashboard\Dashboard;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Livewire\Control\User as ControlUser;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
@@ -17,6 +18,7 @@ Route::middleware('auth')->group(function () {
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/example', Example::class);
+    Route::get('/control-user', ControlUser::class);
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {});
