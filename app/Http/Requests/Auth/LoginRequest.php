@@ -41,7 +41,28 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        // Cek apakah user ada di database dan ambil data user
+        $credentials = $this->only('email', 'password');
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        // Jika user tidak ditemukan atau password tidak cocok
+        if (! $user || ! Auth::getProvider()->validateCredentials($user, $credentials)) {
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'email' => trans('auth.failed'),
+            ]);
+        }
+
+        // Jika user ditemukan tapi tidak aktif
+        if ($user->active == '0') {
+            throw ValidationException::withMessages([
+                'email' => 'Your account is inactive. Please contact support.',
+            ]);
+        }
+
+        // Jika user aktif dan kredensial cocok, lanjutkan proses login
+        if (! Auth::attempt($credentials, $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
