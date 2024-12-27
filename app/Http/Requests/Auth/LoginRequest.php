@@ -49,6 +49,9 @@ class LoginRequest extends FormRequest
         if (! $user || ! Auth::getProvider()->validateCredentials($user, $credentials)) {
             RateLimiter::hit($this->throttleKey());
 
+            // Flash message untuk error
+            session()->flash('error', 'The Username or Password is Incorrect. Try again');
+
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
@@ -56,6 +59,8 @@ class LoginRequest extends FormRequest
 
         // Jika user ditemukan tapi tidak aktif
         if ($user->active == '0') {
+            session()->flash('error', 'Your account is inactive. Please contact support.');
+
             throw ValidationException::withMessages([
                 'email' => 'Your account is inactive. Please contact support.',
             ]);
@@ -65,12 +70,16 @@ class LoginRequest extends FormRequest
         if (! Auth::attempt($credentials, $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
+            // Flash message untuk error
+            session()->flash('error', 'Terjadi kesalahan saat mencoba login. Silakan coba lagi.');
+
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
         }
 
         RateLimiter::clear($this->throttleKey());
+        session()->flash('success', 'Login berhasil! Selamat datang kembali.');
     }
 
     /**
@@ -101,6 +110,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
 }
