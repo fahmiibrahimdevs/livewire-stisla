@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login &mdash; Stisla</title>
+    <title>Login &mdash; Midragon</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('/assets/stisla/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css" />
     <link rel="stylesheet" href="https://static.fontawesome.com/css/fontawesome-app.css" />
+    <link rel="icon" href="{{ asset('/assets/MIDRAGON.png') }}">
 
     <!-- CSS Libraries -->
     <script src="{{ asset('assets/midragon/js/sweetalert2@11.js') }}"></script>

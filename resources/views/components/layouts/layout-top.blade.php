@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css" />
     <link rel="stylesheet" href="https://static.fontawesome.com/css/fontawesome-app.css" />
     <link rel="stylesheet" href="{{ asset('assets/midragon/css/custom.css') }}">
+    <link rel="icon" href="{{ asset('/assets/MIDRAGON.png') }}">
 
     @stack('general-css')
 
