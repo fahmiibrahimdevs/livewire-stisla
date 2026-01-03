@@ -2,96 +2,86 @@
 
 # Livewire Stisla
 
-Project Laravel 11 dengan Livewire 3, Template Admin Stisla, dan Multi Auth menggunakan Laratrust serta Aktif/Non-aktif akun. Have Fun ^_^
+**Livewire Stisla** is a robust starter kit combining the power of **Laravel 11** and **Livewire 3** with the elegant **Stisla Admin Template**. It features a comprehensive multi-auth system using Laratrust and user account management capabilities.
+
+Have Fun ^\_^
+
+## Key Features
+
+-   **Laravel 11 & Livewire 3**: Cutting-edge backend and full-stack framework.
+-   **Stisla Admin Template**: Beautiful, responsive, and easy-to-customize UI.
+-   **Multi-Authentication**: Integrated with **Laratrust** for Admin and User roles logic.
+-   **User Management**: Admin ability to activate/deactivate user accounts.
+-   **Profile Management**: Built-in simple profile editing.
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- [PHP](https://www.php.net/) (version 8.0 or higher)
-- [Composer](https://getcomposer.org/) (for managing dependencies)
-- [MySQL](https://www.mysql.com/) or any other database supported by Laravel
-- [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) (for handling frontend and assets)
-  
-## Installation Steps
+-   [PHP](https://www.php.net/) (version 8.2 or higher)
+-   [Composer](https://getcomposer.org/)
+-   [MySQL](https://www.mysql.com/)
+-   [Node.js](https://nodejs.org/) & [npm](https://www.npmjs.com/)
 
-Follow these steps to get your project up and running.
+## Installation
+
+Follow these steps to setup the project:
 
 ### 1. Clone the Repository
 
-Clone the repository to your local machine:
-
 ```bash
 git clone https://github.com/fahmiibrahimdevs/livewire-stisla.git
+cd livewire-stisla
 ```
 
-### 2. Install PHP Dependencies
+### 2. Install Dependencies
 
-After cloning the repository, navigate to the project directory and install the PHP dependencies using Composer:
+Install PHP and Node.js dependencies:
 
 ```bash
-cd livewire-stisla
 composer install
+npm install
 ```
 
-### 3. Configure .env File
+### 3. Environment Setup
 
-Copy the `.env.example` file to `.env`:
+Copy the example environment file and configure it:
 
 ```bash
 cp .env.example .env
 ```
 
-Then, open the `.env` file and update the database connection and other environment variables based on your local configuration.
+Update your database credentials in the `.env` file.
 
-### 4. Generate Application Key
+### 4. App Key & Database
 
-Run the following command to generate the application key:
+Generate the application key and migrate the database with seeders:
 
 ```bash
 php artisan key:generate
-```
-
-### 5. Run Database Migrations Fresh + Seed
-
-Run the migration command to create the necessary database tables:
-
-```bash
 php artisan migrate:fresh --seed
 ```
 
-### 6. Install Frontend Dependencies
+### 5. Build Assets
 
-Install the frontend dependencies using npm:
-
-```bash
-npm install
-```
-
-### 7. Build Frontend Assets
-
-Once the frontend dependencies are installed, run the following command to build the assets:
+Compile the frontend assets:
 
 ```bash
 npm run dev
+# Or for production
+# npm run build
 ```
 
-If you want to build assets for production, use:
+### 6. Run Application
 
-```bash
-npm run prod
-```
-
-### 8. Run the Application
-
-Your application is now ready to run. To start the Laravel development server, use:
+Start the development server:
 
 ```bash
 php artisan serve
 ```
 
-The application will be available at `http://localhost:8000`.
+Visit `http://localhost:8000` in your browser.
 
-### License
+## License
 
-This project is licensed under the [MIT License](https://github.com/fahmiibrahimdevs/livewire-stisla/blob/main/LICENSE).
+This project is licensed under the [MIT License](LICENSE).
