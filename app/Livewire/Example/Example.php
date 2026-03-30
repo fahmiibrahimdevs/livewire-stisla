@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Example;
 
-use App\Models\Todo;
+use App\Services\TodoService;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -27,45 +27,9 @@ class Example extends Component
 
     public $dataId, $title;
 
-    public function updatingLengthData()
+    public function mount()
     {
-        $this->resetPage();
-    }
-
-    private function searchResetPage()
-    {
-        if ($this->searchTerm !== $this->previousSearchTerm) {
-            $this->resetPage();
-        }
-
-        $this->previousSearchTerm = $this->searchTerm;
-    }
-
-    public function render()
-    {
-        $this->searchResetPage();
-        $search = '%' . $this->searchTerm . '%';
-
-        $data = Todo::where('title', 'LIKE', $search)
-            ->paginate($this->lengthData);
-
-        return view('livewire.example.example', compact('data'));
-    }
-
-    private function dispatchAlert($type, $message, $text)
-    {
-        $this->dispatch('swal:modal', [
-            'type'      => $type,
-            'message'   => $message,
-            'text'      => $text
-        ]);
-
-        $this->resetInputFields();
-    }
-
-    public function isEditingMode($mode)
-    {
-        $this->isEditing = $mode;
+        $this->title = '';
     }
 
     private function resetInputFields()
@@ -73,36 +37,40 @@ class Example extends Component
         $this->title = '';
     }
 
-    public function cancel()
+    public function render(TodoService $todoService)
     {
-        $this->resetInputFields();
+        $this->searchResetPage();
+
+        $data = $todoService->getTodoList($this->searchTerm, $this->lengthData);
+
+        return view('livewire.example.example', compact('data'));
     }
 
-    public function store()
+    public function store(TodoService $todoService)
     {
         $this->validate();
 
-        Todo::create([
+        $todoService->createTodo([
             'title'     => $this->title,
         ]);
 
         $this->dispatchAlert('success', 'Success!', 'Data created successfully.');
     }
 
-    public function edit($id)
+    public function edit($id, TodoService $todoService)
     {
         $this->isEditing = true;
-        $data = Todo::findOrFail($id);
+        $data = $todoService->getTodoById($id);
         $this->dataId = $id;
         $this->title  = $data->title;
     }
 
-    public function update()
+    public function update(TodoService $todoService)
     {
         $this->validate();
 
         if ($this->dataId) {
-            Todo::findOrFail($this->dataId)->update([
+            $todoService->updateTodo($this->dataId, [
                 'title' => $this->title,
             ]);
 
@@ -121,9 +89,44 @@ class Example extends Component
         ]);
     }
 
-    public function delete()
+    public function delete(TodoService $todoService)
     {
-        Todo::findOrFail($this->dataId)->delete();
+        $todoService->deleteTodo($this->dataId);
         $this->dispatchAlert('success', 'Success!', 'Data deleted successfully.');
+    }
+
+    private function dispatchAlert($type, $message, $text)
+    {
+        $this->dispatch('swal:modal', [
+            'type'      => $type,
+            'message'   => $message,
+            'text'      => $text
+        ]);
+
+        $this->resetInputFields();
+    }
+
+    public function isEditingMode($mode)
+    {
+        $this->isEditing = $mode;
+    }
+
+    public function cancel()
+    {
+        $this->resetInputFields();
+    }
+
+    public function updatingLengthData()
+    {
+        $this->resetPage();
+    }
+
+    private function searchResetPage()
+    {
+        if ($this->searchTerm !== $this->previousSearchTerm) {
+            $this->resetPage();
+        }
+
+        $this->previousSearchTerm = $this->searchTerm;
     }
 }

@@ -23,13 +23,13 @@
                         <p>Search: </p><input type="search" wire:model.live.debounce.750ms="searchTerm"
                             id="search-data" placeholder="Search here..." class="form-control" value="">
                     </div>
-                    <div class="table-responsive tw-max-h-96">
-                        <table>
-                            <thead class="tw-sticky tw-top-0">
+                    <div class="table-responsive">
+                        <table class="tw-table-auto">
+                            <thead>
                                 <tr class="tw-text-gray-700">
-                                    <th width="6%" class="text-center">No</th>
-                                    <th>TITLE</th>
-                                    <th class="text-center"><i class="fas fa-cog"></i></th>
+                                    <th class="tw-whitespace-nowrap tw-text-center" width="6%">No</th>
+                                    <th class="tw-whitespace-nowrap">TITLE</th>
+                                    <th class="tw-whitespace-nowrap tw-text-center" width="10%"><i class="fas fa-cog"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,7 +37,7 @@
                                     <tr>
                                         <td class="text-center">{{ $loop->index + 1 }}</td>
                                         <td>{{ $row->title }}</td>
-                                        <td class="text-center">
+                                        <td class="text-center tw-whitespace-nowrap" >
                                             <button wire:click.prevent="edit({{ $row->id }})"
                                                 class="btn btn-primary" data-toggle="modal"
                                                 data-target="#formDataModal">
