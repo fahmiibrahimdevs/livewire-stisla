@@ -4,119 +4,128 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Register &mdash; Midragon</title>
+    <title>Register &mdash; Livewire Stisla</title>
 
-    <!-- General CSS Files -->
-    <link rel="stylesheet" href="{{ asset('/assets/stisla/css/bootstrap.min.css') }}" />
-    <link rel="icon" href="{{ asset('/assets/MIDRAGON.png') }}">
-
-    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://assets.fahmiibrahim.my.id/css/all.min.css">
     <script src="{{ asset('assets/midragon/js/sweetalert2@11.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('/assets/stisla/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/stisla/css/components.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+    </style>
 </head>
 
-<body>
-    <div id="app">
-        <section class="section">
-            <div class="container mt-5">
-                <div class="row tw-px-0 lg:tw-px-56">
-                    <div
-                        class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
-                        <div class="card card-primary tw-mt-0 lg:tw-mt-10 tw-rounded-lg">
-                            <div class="card-header">
-                                <h4 class="tw-font-bold">Register</h4>
-                            </div>
-                            <div class="card-body tw-px-6">
-                                @if ($errors->any())
-                                    <script>
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Failed!',
-                                            html: `
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            `,
-                                        });
-                                    </script>
-                                @endif
-                                <form method="POST" action="{{ route('register') }}">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input id="name" type="text" class="form-control" name="name"
-                                            autofocus>
-                                    </div>
+<body class="tw-bg-white sm:tw-bg-slate-50 tw-min-h-screen tw-flex tw-items-center tw-justify-center">
+    <div id="app" class="tw-w-full tw-max-w-[480px] sm:tw-p-4 sm:tw-mt-10 sm:tw-mb-10">
+        @if ($errors->any())
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed!',
+                    html: `
+                        <ul class="tw-text-left">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    `,
+                });
+            </script>
+        @endif
 
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email">
-                                        <div class="invalid-feedback">
-                                        </div>
-                                    </div>
+        <div class="tw-bg-white tw-rounded-none sm:tw-rounded-2xl tw-shadow-none sm:tw-shadow-[0_4px_25px_rgba(0,0,0,0.05)] tw-p-8 sm:tw-p-10">
+            <div class="tw-flex tw-flex-col tw-items-center tw-mb-8">
+                <div class="tw-w-16 tw-h-16 tw-bg-[#1b3181] tw-rounded-2xl tw-flex tw-items-center tw-justify-center tw-mb-4 tw-shadow-sm">
+                    <i class="fas fa-book-open tw-text-white tw-text-2xl"></i>
+                </div>
+                <h1 class="tw-text-xl tw-font-bold tw-text-slate-800 tw-mb-1">Livewire Stisla</h1>
+                <p class="tw-text-sm tw-text-slate-500 tw-font-medium tw-text-center">Starter Template Laravel Livewire
+                </p>
 
-                                    <div class="form-group">
-                                        <label for="password" class="d-block">Password</label>
-                                        <input id="password" type="password" class="form-control pwstrength"
-                                            data-indicator="pwindicator" name="password">
-                                        <div id="pwindicator" class="pwindicator">
-                                            <div class="bar"></div>
-                                            <div class="label"></div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password_confirmation" class="d-block">Password Confirmation</label>
-                                        <input id="password_confirmation" type="password" class="form-control"
-                                            name="password_confirmation">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="role_user">Role User</label>
-                                        <select id="role_user" name="role_id" class="form-control selectric">
-                                            <option value="admin">Admin</option>
-                                            <option value="user">User</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                            Register
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="mt-5 text-muted text-center">
-                            Already have an account? <a href="{{ route('login') }}">Sign In</a>
-                        </div>
-                        <div class="simple-footer">
-                            Copyright &copy; Midragon 2024
-                        </div>
+                <h2 class="tw-text-2xl tw-font-bold tw-text-slate-800 tw-mt-8 tw-mb-2">Daftar Akun</h2>
+                <p class="tw-text-sm tw-text-slate-500 tw-font-medium tw-text-center">Buat akun Anda untuk melanjutkan
+                </p>
+            </div>
+
+            <form method="POST" action="{{ route('register') }}" class="tw-space-y-5">
+                @csrf
+                <div class="tw-flex tw-flex-col">
+                    <label for="name"
+                        class="tw-mb-1.5 tw-text-sm tw-font-semibold tw-text-slate-600 tw-text-left">Nama
+                        Lengkap</label>
+                    <input id="name" type="text" name="name" required autofocus
+                        class="tw-w-full tw-px-4 tw-py-3 tw-text-sm tw-text-slate-700 tw-bg-white tw-border tw-border-slate-200 tw-rounded-lg focus:tw-outline-none focus:tw-border-[#1b3181] focus:tw-ring-1 focus:tw-ring-[#1b3181] tw-transition-colors">
+                </div>
+
+                <div class="tw-flex tw-flex-col">
+                    <label for="email"
+                        class="tw-mb-1.5 tw-text-sm tw-font-semibold tw-text-slate-600 tw-text-left">Email</label>
+                    <input id="email" type="email" name="email" required
+                        class="tw-w-full tw-px-4 tw-py-3 tw-text-sm tw-text-slate-700 tw-bg-white tw-border tw-border-slate-200 tw-rounded-lg focus:tw-outline-none focus:tw-border-[#1b3181] focus:tw-ring-1 focus:tw-ring-[#1b3181] tw-transition-colors"
+                        placeholder="emailanda@stu.pnj.ac.id">
+                </div>
+
+                <div class="tw-flex tw-flex-col">
+                    <label for="password"
+                        class="tw-mb-1.5 tw-text-sm tw-font-semibold tw-text-slate-600 tw-text-left">Password</label>
+                    <div class="tw-relative">
+                        <input id="password" type="password" name="password" required
+                            class="tw-w-full tw-px-4 tw-py-3 tw-text-sm tw-text-slate-700 tw-bg-white tw-border tw-border-slate-200 tw-rounded-lg focus:tw-outline-none focus:tw-border-[#1b3181] focus:tw-ring-1 focus:tw-ring-[#1b3181] tw-transition-colors tw-pr-10">
+                        <button type="button"
+                            class="tw-absolute tw-right-4 tw-top-1/2 tw-transform -tw-translate-y-1/2 tw-text-slate-400 hover:tw-text-slate-600"
+                            onclick="const p = document.getElementById('password'); p.type = p.type === 'password' ? 'text' : 'password';">
+                            <i class="fas fa-eye"></i>
+                        </button>
                     </div>
                 </div>
+
+                <div class="tw-flex tw-flex-col">
+                    <label for="password_confirmation"
+                        class="tw-mb-1.5 tw-text-sm tw-font-semibold tw-text-slate-600 tw-text-left">Konfirmasi
+                        Password</label>
+                    <div class="tw-relative">
+                        <input id="password_confirmation" type="password" name="password_confirmation" required
+                            class="tw-w-full tw-px-4 tw-py-3 tw-text-sm tw-text-slate-700 tw-bg-white tw-border tw-border-slate-200 tw-rounded-lg focus:tw-outline-none focus:tw-border-[#1b3181] focus:tw-ring-1 focus:tw-ring-[#1b3181] tw-transition-colors tw-pr-10">
+                        <button type="button"
+                            class="tw-absolute tw-right-4 tw-top-1/2 tw-transform -tw-translate-y-1/2 tw-text-slate-400 hover:tw-text-slate-600"
+                            onclick="const p = document.getElementById('password_confirmation'); p.type = p.type === 'password' ? 'text' : 'password';">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tw-flex tw-flex-col">
+                    <label for="role_user"
+                        class="tw-mb-1.5 tw-text-sm tw-font-semibold tw-text-slate-600 tw-text-left">Role
+                        User</label>
+                    <select id="role_user" name="role_id" required
+                        class="tw-w-full tw-px-4 tw-py-3 tw-text-sm tw-text-slate-700 tw-bg-white tw-border tw-border-slate-200 tw-rounded-lg focus:tw-outline-none focus:tw-border-[#1b3181] focus:tw-ring-1 focus:tw-ring-[#1b3181] tw-transition-colors">
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+
+                <div class="tw-pt-4">
+                    <button type="submit"
+                        class="tw-w-full tw-flex tw-justify-center tw-items-center tw-py-3 tw-px-4 tw-border tw-border-transparent tw-rounded-lg tw-text-sm tw-font-semibold tw-text-white tw-bg-[#1e3a8a] hover:tw-bg-blue-900 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-[#1e3a8a] tw-transition-colors">
+                        Daftar
+                    </button>
+                </div>
+            </form>
+
+            <div class="tw-mt-8 tw-text-center">
+                <p class="tw-text-sm tw-text-slate-500 tw-font-medium">
+                    Sudah punya akun? <a href="{{ route('login') }}"
+                        class="tw-text-[#2b6cb0] hover:tw-text-blue-700 hover:tw-underline tw-font-semibold">Sign
+                        In</a>
+                </p>
             </div>
-        </section>
+        </div>
     </div>
-
-    <!-- General JS Scripts -->
-    <script src="{{ asset('/assets/midragon/select2/jquery.min.js') }}"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-
-    <!-- JS Libraies -->
-
-    <!-- Page Specific JS File -->
-    <script src="{{ asset('/assets/stisla/js/stisla.js') }}"></script>
 </body>
 
 </html>

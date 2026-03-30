@@ -4,139 +4,101 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login &mdash; Midragon</title>
+    <title>Login &mdash; Livewire Stisla</title>
 
-    <!-- General CSS Files -->
-    <link rel="stylesheet" href="{{ asset('/assets/stisla/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css" />
-    <link rel="stylesheet" href="https://static.fontawesome.com/css/fontawesome-app.css" />
-    <link rel="icon" href="{{ asset('/assets/MIDRAGON.png') }}">
-
-    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://assets.fahmiibrahim.my.id/css/all.min.css">
     <script src="{{ asset('assets/midragon/js/sweetalert2@11.js') }}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('/assets/stisla/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/stisla/css/components.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+    </style>
 </head>
 
-<body>
-    <div id="app">
-        <section class="section">
-            <div class="container mt-5">
-                <div class="row">
-                    <div
-                        class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                        <div class="login-brand">
-                            <center>
-                                <img src="{{ asset('/assets/MIDRAGON.png') }}" alt="logo" width="100"
-                                    class="shadow-light rounded-circle">
-                            </center>
-                        </div>
+<body class="tw-bg-white sm:tw-bg-slate-50 tw-min-h-screen tw-flex tw-items-center tw-justify-center">
+    <div id="app" class="tw-w-full tw-max-w-[480px] sm:tw-p-4">
+        @if (session('success'))
+            <script>
+                Swal.fire({
+                    title: 'Success!',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            </script>
+        @endif
 
-                        <div class="card card-primary tw-rounded-lg tw-px-6">
-                            <div class="card-header tw-px-0">
-                                <h4 class="tw-font-semibold tw-text-lg">Login</h4>
-                            </div>
-                            @if (session('success'))
-                                <script>
-                                    Swal.fire({
-                                        title: 'Success!',
-                                        text: "{{ session('success') }}",
-                                        icon: 'success',
-                                        confirmButtonText: 'OK'
-                                    });
-                                </script>
-                            @endif
+        @if (session('error'))
+            <script>
+                Swal.fire({
+                    title: 'Failed!',
+                    text: "{{ session('error') }}",
+                    icon: 'warning',
+                    confirmButtonText: 'Try Again'
+                });
+            </script>
+        @endif
 
-                            @if (session('error'))
-                                <script>
-                                    Swal.fire({
-                                        title: 'Failed!',
-                                        text: "{{ session('error') }}",
-                                        icon: 'warning',
-                                        confirmButtonText: 'Try Again'
-                                    });
-                                </script>
-                            @endif
-                            <div class="card-body">
-                                <form method="POST" action="{{ route('login') }}" class="needs-validation"
-                                    novalidate="">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email"
-                                            tabindex="1" required autofocus>
-                                        <div class="invalid-feedback">
-                                            Please fill in your email
-                                        </div>
-                                    </div>
+        <div class="tw-bg-white tw-rounded-none sm:tw-rounded-2xl tw-shadow-none sm:tw-shadow-[0_4px_25px_rgba(0,0,0,0.05)] tw-p-8 sm:tw-p-10">
+            <div class="tw-flex tw-flex-col tw-items-center tw-mb-8">
+                <div class="tw-w-16 tw-h-16 tw-bg-[#1b3181] tw-rounded-2xl tw-flex tw-items-center tw-justify-center tw-mb-4 tw-shadow-sm">
+                    <i class="fas fa-book-open tw-text-white tw-text-2xl"></i>
+                </div>
+                <h1 class="tw-text-xl tw-font-bold tw-text-slate-800 tw-mb-1">Livewire Stisla</h1>
+                <p class="tw-text-xs tw-text-slate-500 tw-font-medium tw-text-center">Starter Template Laravel Livewire
+                </p>
 
-                                    <div class="form-group">
-                                        <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                            {{-- <div class="float-right">
-                                                <a href="auth-forgot-password.html" class="text-small">
-                                                    Forgot Password?
-                                                </a>
-                                            </div> --}}
-                                        </div>
-                                        <input id="password" type="password" class="form-control" name="password"
-                                            tabindex="2" required>
-                                        <div class="invalid-feedback">
-                                            please fill in your password
-                                        </div>
-                                    </div>
+                <h2 class="tw-text-2xl tw-font-bold tw-text-slate-800 tw-mt-6 tw-mb-2">Selamat Datang</h2>
+                <p class="tw-text-xs tw-text-slate-500 tw-font-medium tw-text-center">Masuk ke akun Anda untuk
+                    melanjutkan</p>
+            </div>
 
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="remember" class="custom-control-input"
-                                                tabindex="3" id="remember-me">
-                                            <label class="custom-control-label" for="remember-me">Remember Me</label>
-                                        </div>
-                                    </div>
+            <form method="POST" action="{{ route('login') }}" class="tw-space-y-5">
+                @csrf
+                <div class="tw-flex tw-flex-col">
+                    <label for="email" class="tw-mb-1.5 tw-text-sm tw-font-semibold tw-text-slate-600 tw-text-left">Email</label>
+                    <input id="email" type="email" name="email" tabindex="1" required autofocus
+                        class="tw-w-full tw-px-4 tw-py-3 tw-text-sm tw-text-slate-700 tw-bg-white tw-border tw-border-slate-200 tw-rounded-lg focus:tw-outline-none focus:tw-border-[#1b3181] focus:tw-ring-1 focus:tw-ring-[#1b3181] tw-transition-colors"
+                        placeholder="emailanda@stu.pnj.ac.id">
+                </div>
 
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="mt-5 text-muted text-center">
-                            Don't have an account? <a href="{{ route('register') }}">Create One</a>
-                        </div>
-                        <div class="simple-footer">
-                            Copyright &copy; Stisla {{ date('Y') }}
-                        </div>
+                <div class="tw-flex tw-flex-col">
+                    <label for="password" class="tw-mb-1.5 tw-text-sm tw-font-semibold tw-text-slate-600 tw-text-left">Password</label>
+                    <div class="tw-relative">
+                        <input id="password" type="password" name="password" tabindex="2" required
+                            class="tw-w-full tw-px-4 tw-py-3 tw-text-sm tw-text-slate-700 tw-bg-white tw-border tw-border-slate-200 tw-rounded-lg focus:tw-outline-none focus:tw-border-[#1b3181] focus:tw-ring-1 focus:tw-ring-[#1b3181] tw-transition-colors tw-pr-10">
+                        <button type="button" class="tw-absolute tw-right-4 tw-top-1/2 tw-transform -tw-translate-y-1/2 tw-text-slate-400 hover:tw-text-slate-600" onclick="const p = document.getElementById('password'); p.type = p.type === 'password' ? 'text' : 'password';">
+                            <i class="fas fa-eye"></i>
+                        </button>
                     </div>
                 </div>
+
+                <div class="tw-flex tw-items-center tw-pt-1">
+                    <input id="remember-me" name="remember" type="checkbox" tabindex="3"
+                        class="tw-w-4 tw-h-4 tw-text-[#1b3181] tw-bg-white tw-border-slate-300 tw-rounded focus:tw-ring-[#1b3181]">
+                    <label for="remember-me" class="tw-ml-2 tw-block tw-text-sm tw-text-slate-500 tw-font-medium">
+                        Ingat saya di perangkat ini
+                    </label>
+                </div>
+
+                <div class="tw-pt-4">
+                    <button type="submit" tabindex="4"
+                        class="tw-w-full tw-flex tw-justify-center tw-items-center tw-py-3 tw-px-4 tw-border tw-border-transparent tw-rounded-lg tw-text-sm tw-font-semibold tw-text-white tw-bg-[#1e3a8a] hover:tw-bg-blue-900 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-[#1e3a8a] tw-transition-colors">
+                        Masuk
+                    </button>
+                </div>
+            </form>
+
+            <div class="tw-mt-8 tw-text-center">
+                <p class="tw-text-sm tw-text-slate-500 tw-font-medium">
+                    Belum punya akun? <a href="{{ route('register') }}" class="tw-text-[#2b6cb0] hover:tw-text-blue-700 hover:tw-underline tw-font-semibold">Daftar</a>
+                </p>
             </div>
-        </section>
+        </div>
     </div>
-
-    <!-- General JS Scripts -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="../assets/js/stisla.js"></script>
-
-    <!-- JS Libraies -->
-
-    <!-- Template JS File -->
-    <script src="../assets/js/scripts.js"></script>
-    <script src="../assets/js/custom.js"></script>
-
-    <!-- Page Specific JS File -->
 </body>
-
 </html>
